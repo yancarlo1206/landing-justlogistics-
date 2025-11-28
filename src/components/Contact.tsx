@@ -6,6 +6,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Label } from './ui/label';
+import Swal from "sweetalert2";
 import {
   AlertDialog,
   AlertDialogContent,
@@ -26,21 +27,46 @@ export function Contact() {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
   const [alertType, setAlertType] = useState<'success' | 'error'>('success');
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
-      setAlertType('error');
-      setAlertMessage('Por favor complete todos los campos');
-      setShowAlert(true);
-      return;
+    const { name, email, subject, message } = formData;
+    const newErrors: Record<string, string> = {};
+
+    if (!name || !name.trim()) newErrors.name = 'Nombre es obligatorio';
+
+    if (!email || !email.trim()) {
+      newErrors.email = 'Correo electrónico es obligatorio';
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) newErrors.email = 'Correo electrónico inválido';
     }
 
-    setAlertType('success');
-    setAlertMessage('Formulario enviado con éxito');
-    setShowAlert(true);
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    if (!subject || !subject.trim()) newErrors.subject = 'Asunto es obligatorio';
+
+    if (!message || !message.trim()) {
+      newErrors.message = 'Mensaje es obligatorio';
+    } else if (message.trim().length < 10) {
+      newErrors.message = 'El mensaje debe tener al menos 10 caracteres';
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+// Validación pasada. Aquí puedes enviar los datos a tu API con fetch/axios.
+    setErrors({});
+     Swal.fire({
+      title: "¡Éxito!",
+      text: "Mensaje enviado con éxito. Nos pondremos en contacto contigo pronto.",
+      icon: "success",
+      background: "#f3f3f3",
+      confirmButtonColor: "#0056a6",
+    });
+    setFormData({ name: '', email: '', subject: '', message: '' })
+    
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -90,9 +116,12 @@ export function Contact() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
+                  required
+                  aria-invalid={!!errors.name}
                   className="mt-2 rounded-lg border-gray-300 focus:border-[#36e7f6] focus:ring-[#36e7f6]"
                   placeholder="Tu nombre completo"
                 />
+                {errors.name && <p className="text-red-600 text-sm mt-1">{errors.name}</p>}
               </div>
 
               <div>
@@ -103,9 +132,12 @@ export function Contact() {
                   type="email"
                   value={formData.email}
                   onChange={handleChange}
+                  required
+                  aria-invalid={!!errors.email}
                   className="mt-2 rounded-lg border-gray-300 focus:border-[#36e7f6] focus:ring-[#36e7f6]"
                   placeholder="tu@email.com"
                 />
+                {errors.email && <p className="text-red-600 text-sm mt-1">{errors.email}</p>}
               </div>
 
               <div>
@@ -115,9 +147,12 @@ export function Contact() {
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
+                  required
+                  aria-invalid={!!errors.subject}
                   className="mt-2 rounded-lg border-gray-300 focus:border-[#36e7f6] focus:ring-[#36e7f6]"
                   placeholder="Motivo de tu consulta"
                 />
+                {errors.subject && <p className="text-red-600 text-sm mt-1">{errors.subject}</p>}
               </div>
 
               <div>
@@ -127,9 +162,12 @@ export function Contact() {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
+                  required
+                  aria-invalid={!!errors.message}
                   className="mt-2 rounded-lg border-gray-300 focus:border-[#36e7f6] focus:ring-[#36e7f6] min-h-[150px]"
                   placeholder="Escribe tu mensaje aquí..."
                 />
+                {errors.message && <p className="text-red-600 text-sm mt-1">{errors.message}</p>}
               </div>
 
               <Button

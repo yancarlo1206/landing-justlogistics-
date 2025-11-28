@@ -8,6 +8,9 @@ interface HeroProps {
 }
 
 export function Hero({ onNavigateToTracking }: HeroProps) {
+  const onNavigateToTrackingUrl = () => {
+  window.open("https://app.justlogistics.com.co", "_blank");
+};
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -49,7 +52,7 @@ export function Hero({ onNavigateToTracking }: HeroProps) {
         </motion.p>
 
         <motion.div variants={effectiveFadeUp}>
-          <Button onClick={onNavigateToTracking} className="boton-verde">
+          <Button onClick={onNavigateToTrackingUrl} className="boton-verde">
             Rastrea tu envío
             <ArrowRight className="ml-2" size={20} />
           </Button>

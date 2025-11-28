@@ -134,7 +134,7 @@ export function AboutUs() {
                 className="text-center p-4 sm:p-6 bg-[#efeff1] rounded-lg transition-[transform,box-shadow] duration-300 will-change-transform hover:-translate-y-1.5 hover:shadow-xl pt-6 sm:pt-8"
               >
                 <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-[#f97600] rounded-full mb-3 sm:mb-4">
-                  <value.icon className="text-white" size={24} style={{ width: '24px', height: '24px' }} />
+                  <value.icon className="" size={36}  />
                 </div>
                 <h4 className="text-[#26306a] mb-2 sm:mb-3 text-base sm:text-lg" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}>
                   {value.title}
