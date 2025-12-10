@@ -6,16 +6,6 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Label } from './ui/label';
-import Swal from "sweetalert2";
-import {
-  AlertDialog,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from './ui/alert-dialog';
-import { AnimatePresence } from 'motion/react';
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -24,14 +14,9 @@ export function Contact() {
     subject: '',
     message: '',
   });
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
-  const [alertType, setAlertType] = useState<'success' | 'error'>('success');
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
     const { name, email, subject, message } = formData;
     const newErrors: Record<string, string> = {};
 
@@ -53,20 +38,13 @@ export function Contact() {
     }
 
     if (Object.keys(newErrors).length > 0) {
+      e.preventDefault();
       setErrors(newErrors);
       return;
     }
-// Validación pasada. Aquí puedes enviar los datos a tu API con fetch/axios.
+
+    // Si la validación pasa, el formulario se enviará automáticamente a FormSubmit
     setErrors({});
-     Swal.fire({
-      title: "¡Éxito!",
-      text: "Mensaje enviado con éxito. Nos pondremos en contacto contigo pronto.",
-      icon: "success",
-      background: "#f3f3f3",
-      confirmButtonColor: "#0056a6",
-    });
-    setFormData({ name: '', email: '', subject: '', message: '' })
-    
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -77,29 +55,29 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-12 sm:py-16 lg:py-20 bg-[#F5F5F5]">
+    <section id="contact" className="py-16 sm:py-20 lg:py-24 bg-[#F5F5F5]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={staggerContainer(0.05, 0.08)}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.3 }}
-          className="text-center mb-8 sm:mb-12 lg:mb-16"
+          className="text-center mb-12 sm:mb-16 lg:mb-20"
         >
           <motion.h2
             variants={effectiveFadeUp}
-            className="text-[#001F54] mb-4 text-2xl sm:text-3xl lg:text-4xl px-2"
+            className="text-[#001F54] mb-4 text-3xl sm:text-4xl lg:text-5xl px-2"
             style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}
           >
             Contáctanos
           </motion.h2>
           <motion.div variants={effectiveFadeUp} className="w-24 h-1 bg-[#F8A23B] mx-auto"></motion.div>
-          <motion.p variants={effectiveFadeUp} className="text-gray-600 mt-4 sm:mt-6 text-sm sm:text-base px-4 sm:px-0">
+          <motion.p variants={effectiveFadeUp} className="text-gray-600 mt-6 text-base sm:text-lg px-4 sm:px-0">
             Estamos aquí para ayudarte con tus necesidades logísticas
           </motion.p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
           {/* Contact Form */}
           <motion.div
             variants={effectiveFadeUp}
@@ -108,9 +86,20 @@ export function Contact() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 bg-white p-4 sm:p-6 lg:p-8 rounded-xl shadow-lg">
+            <form
+              onSubmit={handleSubmit}
+              action="https://formsubmit.co/customerservice@justlogistics.com.co"
+              method="POST"
+              className="space-y-6 bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg"
+            >
+              {/* FormSubmit configuration */}
+              <input type="hidden" name="_subject" value="Nuevo mensaje desde Just International Logistics" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_next" value={window.location.href + "?success=true"} />
+
               <div>
-                <Label htmlFor="name">Nombre</Label>
+                <Label htmlFor="name" className="text-base">Nombre</Label>
                 <Input
                   id="name"
                   name="name"
@@ -118,14 +107,14 @@ export function Contact() {
                   onChange={handleChange}
                   required
                   aria-invalid={!!errors.name}
-                  className="mt-2 rounded-lg border-gray-300 focus:border-[#36e7f6] focus:ring-[#36e7f6]"
+                  className="mt-2 rounded-lg border-gray-300 focus:border-[#36e7f6] focus:ring-[#36e7f6] h-12 text-base"
                   placeholder="Tu nombre completo"
                 />
                 {errors.name && <p className="text-red-600 text-sm mt-1">{errors.name}</p>}
               </div>
 
               <div>
-                <Label htmlFor="email">Correo Electrónico</Label>
+                <Label htmlFor="email" className="text-base">Correo Electrónico</Label>
                 <Input
                   id="email"
                   name="email"
@@ -134,14 +123,14 @@ export function Contact() {
                   onChange={handleChange}
                   required
                   aria-invalid={!!errors.email}
-                  className="mt-2 rounded-lg border-gray-300 focus:border-[#36e7f6] focus:ring-[#36e7f6]"
+                  className="mt-2 rounded-lg border-gray-300 focus:border-[#36e7f6] focus:ring-[#36e7f6] h-12 text-base"
                   placeholder="tu@email.com"
                 />
                 {errors.email && <p className="text-red-600 text-sm mt-1">{errors.email}</p>}
               </div>
 
               <div>
-                <Label htmlFor="subject">Asunto</Label>
+                <Label htmlFor="subject" className="text-base">Asunto</Label>
                 <Input
                   id="subject"
                   name="subject"
@@ -149,14 +138,14 @@ export function Contact() {
                   onChange={handleChange}
                   required
                   aria-invalid={!!errors.subject}
-                  className="mt-2 rounded-lg border-gray-300 focus:border-[#36e7f6] focus:ring-[#36e7f6]"
+                  className="mt-2 rounded-lg border-gray-300 focus:border-[#36e7f6] focus:ring-[#36e7f6] h-12 text-base"
                   placeholder="Motivo de tu consulta"
                 />
                 {errors.subject && <p className="text-red-600 text-sm mt-1">{errors.subject}</p>}
               </div>
 
               <div>
-                <Label htmlFor="message">Mensaje</Label>
+                <Label htmlFor="message" className="text-base">Mensaje</Label>
                 <Textarea
                   id="message"
                   name="message"
@@ -164,7 +153,7 @@ export function Contact() {
                   onChange={handleChange}
                   required
                   aria-invalid={!!errors.message}
-                  className="mt-2 rounded-lg border-gray-300 focus:border-[#36e7f6] focus:ring-[#36e7f6] min-h-[150px]"
+                  className="mt-2 rounded-lg border-gray-300 focus:border-[#36e7f6] focus:ring-[#36e7f6] min-h-[180px] text-base"
                   placeholder="Escribe tu mensaje aquí..."
                 />
                 {errors.message && <p className="text-red-600 text-sm mt-1">{errors.message}</p>}
@@ -172,9 +161,9 @@ export function Contact() {
 
               <Button
                 type="submit"
-                className="w-full bg-[#0056A6] hover:bg-[#004080] text-white py-4 sm:py-6 rounded-lg shadow-md transition-all duration-300 text-sm sm:text-base"
+                className="w-full bg-[#0056A6] hover:bg-[#004080] text-white min-h-[52px] rounded-lg shadow-md transition-all duration-300 text-base sm:text-lg font-semibold"
               >
-                <Send className="mr-2" size={18} style={{ width: '18px', height: '18px', minWidth: '18px' }} />
+                <Send className="mr-2" size={20} style={{ width: '20px', height: '20px', minWidth: '20px' }} />
                 Enviar Mensaje
               </Button>
             </form>
@@ -241,7 +230,7 @@ export function Contact() {
               </div>
             </div>
 
-            <div className="bg-[#0056A6] p-4 sm:p-6 lg:p-8 rounded-xl shadow-lg text-white">
+            <div className="bg-[#001F54] p-4 sm:p-6 lg:p-8 rounded-xl shadow-lg text-white">
               <h3 className="mb-3 sm:mb-4 text-lg sm:text-xl" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}>
                 Horario de Atención
               </h3>
@@ -256,39 +245,6 @@ export function Contact() {
           </motion.div>
         </div>
       </div>
-
-      {/* Alert Dialog */}
-      <AlertDialog open={showAlert} onOpenChange={setShowAlert}>
-        <AnimatePresence>
-          {showAlert && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              <AlertDialogContent asChild className="rounded-xl">
-                <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.98, opacity: 0 }} transition={{ duration: 0.2 }}>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle
-                      className={alertType === 'success' ? 'text-green-600' : 'text-red-600'}
-                    >
-                      {alertType === 'success' ? '¡Éxito!' : 'Error'}
-                    </AlertDialogTitle>
-                    <AlertDialogDescription>{alertMessage}</AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <Button
-                      onClick={() => setShowAlert(false)}
-                      className={`rounded-lg ${alertType === 'success'
-                        ? 'bg-green-600 hover:bg-green-700'
-                        : 'bg-red-600 hover:bg-red-700'
-                        }`}
-                    >
-                      Cerrar
-                    </Button>
-                  </AlertDialogFooter>
-                </motion.div>
-              </AlertDialogContent>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </AlertDialog>
     </section>
   );
 }
