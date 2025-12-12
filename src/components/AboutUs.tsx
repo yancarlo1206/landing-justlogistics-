@@ -110,8 +110,8 @@ export function AboutUs() {
               className="relative h-64 sm:h-80 md:h-full lg:h-auto flex items-center justify-center"
             >
               <img
-                src="https://i.postimg.cc/yYFj7CVk/kobu-agency-ggrbi6qu-XQU-unsplash-removebg-preview.png"
-                alt="Team"
+                src="/assets/img/mision&vision.jpg"
+                alt="Misión y Visión"
                 className="w-full h-full object-contain"
               />
             </motion.div>

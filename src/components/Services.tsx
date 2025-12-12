@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Plane, Truck, Ship, Package } from 'lucide-react';
+import { Plane, Truck, Ship, Package, Rocket } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 
 export function Services() {
@@ -32,12 +32,13 @@ export function Services() {
         'Operador de Transporte Multimodal con servicio puerta a puerta. Combinamos todos los modos de transporte.',
       color: '#889983',
     },
-  ];
-
-  const containers = [
-    { name: 'Dryvan', img: 'assets/img/Dry van.png' },
-    { name: 'Reefer', img: 'assets/img/reefer.png' },
-    { name: 'Tanque Cisterna', img: 'assets/img/Tank.png' },
+    {
+      icon: Rocket,
+      title: 'Courier Internacional',
+      description:
+        'Envíos rápidos y seguros, garantizamos una gestión ágil, asesoría permanente y trazabilidad completa para que tus envíos lleguen a su destino sin contratiempos.',
+      color: '#ef4444',
+    },
   ];
 
   return (
@@ -97,49 +98,6 @@ export function Services() {
           ))}
         </div>
 
-        {/* Sección de Tipos de Contenedor */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-16 sm:mt-20 lg:mt-24"
-        >
-          <h3
-            className="text-[#26306a] text-center mb-10 sm:mb-12 lg:mb-16 text-3xl sm:text-4xl lg:text-5xl px-2"
-            style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}
-          >
-            Tipo de Contenedor
-          </h3>
-          <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-8 lg:gap-12 px-4">
-            {containers.map((container, index) => (
-              <motion.div
-                key={container.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                className="flex-1 max-w-sm bg-white rounded-2xl shadow-lg p-6 sm:p-8 transition-all duration-300 border-2 border-gray-100 cursor-pointer min-h-[280px] sm:min-h-[300px] flex flex-col items-center justify-center"
-                style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)' }}
-              >
-                <div className="flex flex-col items-center">
-                  <img
-                    src={container.img}
-                    alt={container.name}
-                    className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 object-contain mb-6"
-                  />
-                  <p
-                    className="text-[#26306a] text-center text-lg sm:text-xl lg:text-2xl px-2"
-                    style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}
-                  >
-                    {container.name}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );

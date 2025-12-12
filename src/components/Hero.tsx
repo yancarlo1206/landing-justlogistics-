@@ -20,7 +20,7 @@ export function Hero({ onNavigateToTracking }: HeroProps) {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url('https://i.postimg.cc/wMFMgkB9/baner.png')`,
+          backgroundImage: `url('/assets/img/hero.jpg')`,
         }}
       />
 

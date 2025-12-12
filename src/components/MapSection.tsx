@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, ZoomIn, ZoomOut, Maximize2, X } from 'lucide-react';
 import { Button } from './ui/button';
 import * as RSM from 'react-simple-maps';
-import { geoMercator } from 'd3-geo';
 
 // ---------- TIPOS ----------
 interface Location {
@@ -11,10 +10,6 @@ interface Location {
   name: string;
   description: string;
   coordinates: [number, number]; // [lon, lat]
-}
-interface Route {
-  from: Location;
-  to: Location;
 }
 interface MapSectionProps {
   isFullPage?: boolean;
@@ -26,13 +21,17 @@ const DEFAULT_LOCATIONS: Location[] = [
   { id: '2', name: 'España', description: 'Hub Europa', coordinates: [-3.7038, 40.4168] },
   { id: '3', name: 'Venezuela', description: 'Hub Sudamérica Norte', coordinates: [-66.9036, 10.4806] },
   { id: '4', name: 'Brasil', description: 'Hub Sudamérica', coordinates: [-47.8825, -15.7942] },
-];
-
-const DEFAULT_ROUTES: Route[] = [
-  { from: DEFAULT_LOCATIONS[0], to: DEFAULT_LOCATIONS[1] },
-  { from: DEFAULT_LOCATIONS[1], to: DEFAULT_LOCATIONS[2] },
-  { from: DEFAULT_LOCATIONS[2], to: DEFAULT_LOCATIONS[3] },
-  { from: DEFAULT_LOCATIONS[3], to: DEFAULT_LOCATIONS[0] },
+  { id: '5', name: 'India', description: 'Hub Asia Sur', coordinates: [77.2090, 28.6139] },
+  { id: '6', name: 'China', description: 'Hub Asia Oriental', coordinates: [116.4074, 39.9042] },
+  { id: '7', name: 'Ecuador', description: 'Operaciones Sudamérica', coordinates: [-78.4678, -0.1807] },
+  { id: '8', name: 'Panamá', description: 'Hub Centroamérica', coordinates: [-79.5199, 8.9824] },
+  { id: '9', name: 'Bélgica', description: 'Hub Europa Occidental', coordinates: [4.3517, 50.8503] },
+  { id: '10', name: 'Alemania', description: 'Hub Europa Central', coordinates: [13.4050, 52.5200] },
+  { id: '11', name: 'Polonia', description: 'Hub Europa del Este', coordinates: [21.0122, 52.2297] },
+  { id: '12', name: 'Irlanda', description: 'Hub Europa Atlántico', coordinates: [-6.2603, 53.3498] },
+  { id: '13', name: 'Rumania', description: 'Operaciones Europa Este', coordinates: [26.1025, 44.4268] },
+  { id: '14', name: 'Serbia', description: 'Operaciones Balcanes', coordinates: [20.4489, 44.7866] },
+  { id: '15', name: 'Chile', description: 'Hub Sudamérica Sur', coordinates: [-70.6693, -33.4489] },
 ];
 
 // ---------- COMPONENTE ----------
@@ -44,20 +43,10 @@ export function MapSection({ isFullPage = false }: MapSectionProps) {
 
   // Usa los datos por defecto directamente
   const [locations] = useState<Location[]>(DEFAULT_LOCATIONS);
-  const [routes] = useState<Route[]>(DEFAULT_ROUTES);
 
   // Controles de zoom
   const zoomIn = () => setZoom((z) => Math.min(z + 0.3, 3));
   const zoomOut = () => setZoom((z) => Math.max(z - 0.3, 0.8));
-
-  // Proyección de coordenadas geográficas a píxeles
-  function project(coord: [number, number]): [number, number] {
-    const proj = geoMercator()
-      .scale(800)
-      .translate([0, 0])
-      .center([-30, 15]);
-    return proj(coord) || [0, 0];
-  }
 
   return (
     <>
@@ -141,28 +130,6 @@ export function MapSection({ isFullPage = false }: MapSectionProps) {
                     }
                   </RSM.Geographies>
 
-                  {/* Rutas animadas */}
-                  {routes.map((r, i) => {
-                    const [x1, y1] = project(r.from.coordinates);
-                    const [x2, y2] = project(r.to.coordinates);
-                    return (
-                      <motion.line
-                        key={`route-${i}`}
-                        x1={x1}
-                        y1={y1}
-                        x2={x2}
-                        y2={y2}
-                        stroke="#f97600"
-                        strokeWidth={2.5}
-                        strokeLinecap="round"
-                        strokeDasharray="8 4"
-                        initial={{ pathLength: 0, opacity: 0 }}
-                        animate={{ pathLength: 1, opacity: 1 }}
-                        transition={{ duration: 1.2, delay: i * 0.15 }}
-                      />
-                    );
-                  })}
-
                   {/* Marcadores con color turquesa */}
                   {locations.map((loc, i) => {
                     const nameLength = loc.name.length;
@@ -238,12 +205,6 @@ export function MapSection({ isFullPage = false }: MapSectionProps) {
             <div className="flex items-center gap-1.5">
               <MapPin className="text-[#36e7f6]" size={16} />
               <span>Ubicaciones operativas</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <svg width={28} height={6}>
-                <line x1={0} y1={3} x2={28} y2={3} stroke="#f97600" strokeWidth={2.5} strokeDasharray="6 3" strokeLinecap="round" />
-              </svg>
-              <span>Rutas principales</span>
             </div>
           </motion.div>
         </div>

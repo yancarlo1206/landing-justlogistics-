@@ -161,11 +161,19 @@ export function Contact() {
 
               <Button
                 type="submit"
-                className="w-full bg-[#0056A6] hover:bg-[#004080] text-white min-h-[52px] rounded-lg shadow-md transition-all duration-300 text-base sm:text-lg font-semibold"
+                className="w-full text-white min-h-[52px] rounded-lg shadow-md transition-all duration-300 text-base sm:text-lg font-semibold custom-submit-btn"
               >
                 <Send className="mr-2" size={20} style={{ width: '20px', height: '20px', minWidth: '20px' }} />
                 Enviar Mensaje
               </Button>
+              <style>{`
+                .custom-submit-btn {
+                  background-color: #89883d !important;
+                }
+                .custom-submit-btn:hover {
+                  background-color: #36e7f6 !important;
+                }
+              `}</style>
             </form>
           </motion.div>
 
