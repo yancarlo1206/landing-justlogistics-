@@ -1,11 +1,18 @@
+// Widget flotante de chat/WhatsApp para contacto rápido.
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { MessageCircle, X, Phone } from "lucide-react";
-import { Button } from "./ui/button";
+
+// Logo local reutilizado en el header del widget
+const logoHorizontal = new URL(
+  "../../assets/img/Logotipo Horizontal Blanco.png",
+  import.meta.url
+).href;
 
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Abre conversación en WhatsApp con mensaje prellenado
   const handleWhatsApp = () => {
     const msg = encodeURIComponent(
       "Hola, necesito información sobre servicios logísticos o cotización"
@@ -46,12 +53,12 @@ export function ChatWidget() {
             transition={{ duration: 0.3 }}
             className="fixed bottom-24 right-6 z-50 w-[calc(100vw-2rem)] max-w-sm bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden flex flex-col"
           >
-            {/* Header */}
+            {/* Header con logo y estado */}
             <div className="flex items-center justify-between px-4 py-3 bg-[#0056A6] text-white">
               <div className="flex items-center space-x-3">
                 <div className="bg-blue px-3 py-2 rounded-lg flex items-center justify-center">
                   <img
-                    src="https://i.postimg.cc/TPC0DVSN/Chat-GPT-Image-9-nov-2025-21-40-45-removebg-preview.png"
+                    src={logoHorizontal}
                     alt="JIL Logo"
                     className="h-8 w-auto"
                   />
