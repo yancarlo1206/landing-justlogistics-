@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { motion, useInView, useSpring } from 'framer-motion';
 import { effectiveFadeUp } from './ui/animations';
-import ascensoIcon from '../assets/img/Icono ascenso turquesa.png';
+import operacionesIcon from '../assets/img/Icono Operaciones Movilizadas.png';
 import recargaIcon from '../assets/img/Icono recarga turquesa.png';
 import barcoIcon from '../assets/img/Icono barco turquesa.png';
 import cajaIcon from '../assets/img/Icono caja turquesa.png';
@@ -39,14 +39,14 @@ function AnimatedCounter({ value, prefix = '', suffix = '' }: { value: number; p
 export function Statistics() {
     const stats = [
         {
-            icon: ascensoIcon,
+            icon: recargaIcon,
             value: 8,
             prefix: '+',
             suffix: '',
             label: 'Años de Experiencia',
         },
         {
-            icon: recargaIcon,
+            icon: operacionesIcon,
             value: 80,
             prefix: '+',
             label: 'Operaciones Realizadas',
