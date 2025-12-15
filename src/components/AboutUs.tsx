@@ -1,28 +1,34 @@
 // Sección "Sobre Nosotros": misión, visión y valores con diseño mejorado.
 import { motion } from 'motion/react';
 import { staggerContainer, effectiveFadeUp } from './ui/animations';
-import { Target, Eye } from 'lucide-react';
+import integridadImg from '../assets/img/Valor_Integridad.jpg';
+import sostenibilidadImg from '../assets/img/Valor_Sostenibilidad.jpg';
+import innovacionImg from '../assets/img/Valor_Innovación.jpg';
+import enfoqueImg from '../assets/img/Valor_EnfoqueBinacional.jpg';
+import misionVisionImg from '../assets/img/mision&vision.jpg';
+import misionIcon from '../assets/img/icono mision.png';
+import visionIcon from '../assets/img/icono vision.png';
 
 export function AboutUs() {
   // Valores destacados con imágenes
   const values = [
     {
-      image: '/assets/img/Valor_Integridad.jpg',
+      image: integridadImg,
       title: 'Integridad',
       description: 'Actuamos con honestidad y transparencia en cada operación',
     },
     {
-      image: '/assets/img/Valor_Sostenibilidad.jpg',
+      image: sostenibilidadImg,
       title: 'Sostenibilidad',
       description: 'Comprometidos con prácticas logísticas responsables con el medio ambiente',
     },
     {
-      image: '/assets/img/Valor_Innovación.jpg',
+      image: innovacionImg,
       title: 'Innovación',
       description: 'Implementamos tecnología de vanguardia en nuestros procesos',
     },
     {
-      image: '/assets/img/Valor_EnfoqueBinacional.jpg',
+      image: enfoqueImg,
       title: 'Enfoque Binacional',
       description: 'Especialización en operaciones entre Colombia y mercados internacionales',
     },
@@ -71,7 +77,7 @@ export function AboutUs() {
                   className="text-[#26306a] mb-3 sm:mb-4 flex items-center text-lg sm:text-xl lg:text-2xl"
                   style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}
                 >
-                  <Target className="mr-2 sm:mr-3 text-[#36e7f6]" size={20} style={{ width: '20px', height: '20px', minWidth: '20px' }} />
+                  <img src={misionIcon} alt="Misión" className="mr-2 sm:mr-3 object-contain" style={{ width: '20px', height: '20px', minWidth: '20px' }} />
                   Misión
                 </h3>
                 <p className="text-gray-700 text-justify leading-relaxed text-sm sm:text-base">
@@ -88,7 +94,7 @@ export function AboutUs() {
                   className="text-[#26306a] mb-3 sm:mb-4 flex items-center text-lg sm:text-xl lg:text-2xl"
                   style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}
                 >
-                  <Eye className="mr-2 sm:mr-3 text-[#36e7f6]" size={20} style={{ width: '20px', height: '20px', minWidth: '20px' }} />
+                  <img src={visionIcon} alt="Visión" className="mr-2 sm:mr-3 object-contain" style={{ width: '20px', height: '20px', minWidth: '20px' }} />
                   Visión
                 </h3>
                 <p className="text-gray-700 text-justify leading-relaxed text-sm sm:text-base">
@@ -110,7 +116,7 @@ export function AboutUs() {
               className="relative h-64 sm:h-80 md:h-full lg:h-auto flex items-center justify-center"
             >
               <img
-                src="/assets/img/mision&vision.jpg"
+                src={misionVisionImg}
                 alt="Misión y Visión"
                 className="w-full h-full object-contain"
               />
