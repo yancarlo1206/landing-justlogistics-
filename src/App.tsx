@@ -1,5 +1,5 @@
 // Hooks de React para estado y efectos
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 // Secciones principales del landing
 import { Navbar } from './components/Navbar';
@@ -23,7 +23,7 @@ export default function App() {
   >('home');
 
   // Flag para saber si se está en modo admin (por ahora sin uso visible en UI)
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+  const [isAdminLoggedIn, _setIsAdminLoggedIn] = useState(false);
 
   // Scroll suave hacia la sección; resta 80px para evitar que el navbar cubra el título
   const smoothScroll = (section: string) => {
