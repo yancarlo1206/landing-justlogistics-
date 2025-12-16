@@ -1,5 +1,5 @@
 {
-      "name": "Logística JIL",
+      "name": "logistica-jil",
       "version": "0.1.0",
       "private": true,
       "type": "module",
@@ -12,6 +12,7 @@
             "lucide-react": "^0.487.0",
             "motion": "*",
             "next-themes": "^0.4.6",
+            "prop-types": "^15.8.1",
             "react": "^18.3.1",
             "react-dom": "^18.3.1",
             "react-simple-maps": "^3.0.0",
