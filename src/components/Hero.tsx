@@ -1,5 +1,5 @@
 // Hero: sección principal con fondo, mensaje y CTA hacia tracking.
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { staggerContainer, effectiveFadeUp } from './ui/animations';
 import { ArrowRight } from 'lucide-react';
 import { Button } from './ui/button';

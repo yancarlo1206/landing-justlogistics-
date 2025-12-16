@@ -1,5 +1,5 @@
 // Sección "Sobre Nosotros": misión, visión y valores con diseño mejorado.
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { staggerContainer, effectiveFadeUp } from './ui/animations';
 import integridadImg from '../assets/img/Valor_Integridad.jpg';
 import sostenibilidadImg from '../assets/img/Valor_Sostenibilidad.jpg';

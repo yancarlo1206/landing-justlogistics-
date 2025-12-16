@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { effectiveFadeUp } from './ui/animations';
 import frontierLogo from '../assets/img/Frontier logo.jpeg';
 

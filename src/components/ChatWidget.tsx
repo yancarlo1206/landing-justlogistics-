@@ -1,6 +1,6 @@
 // Widget flotante de chat/WhatsApp para contacto rápido.
 import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Phone } from "lucide-react";
 
 // Logo local reutilizado en el header del widget

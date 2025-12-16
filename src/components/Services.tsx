@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import aereoIcon from '../assets/img/icono aereo.png';
 import terrestreIcon from '../assets/img/icono terrestre.png';
 import maritimoIcon from '../assets/img/icono maritimo.png';
