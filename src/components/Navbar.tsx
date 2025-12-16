@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { staggerContainer, effectiveFadeIn } from './ui/animations';
 
 const logoHorizontal = new URL(
-  '../../assets/img/Logotipo Horizontal Blanco.png',
+  '../assets/img/Logotipo Horizontal Blanco.png',
   import.meta.url
 ).href;
 
@@ -22,8 +22,10 @@ export function Navbar({ activeSection, onNavigate }: NavbarProps) {
   const navLinks = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'Sobre Nosotros' },
+    { id: 'statistics', label: 'Cifras' },
     { id: 'services', label: 'Servicios' },
     { id: 'map', label: 'Mapa' },
+    { id: 'brands', label: 'Aliados' },
     { id: 'contact', label: 'Contacto' }
   ];
 

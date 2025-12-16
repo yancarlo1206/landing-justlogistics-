@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { staggerContainer, effectiveFadeUp } from './ui/animations';
 import { ArrowRight } from 'lucide-react';
 import { Button } from './ui/button';
+import heroBg from '../assets/img/herooo.jpg';
 
 interface HeroProps {
   onNavigateToTracking: () => void;
@@ -20,7 +21,7 @@ export function Hero({ onNavigateToTracking }: HeroProps) {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url('/assets/img/hero.jpg')`,
+          backgroundImage: `url(${heroBg})`,
         }}
       />
 
@@ -53,6 +54,22 @@ export function Hero({ onNavigateToTracking }: HeroProps) {
         >
           Movemos tu carga a donde desees
         </motion.h1>
+
+        <motion.p
+          variants={effectiveFadeUp}
+          className="mb-6 tracking-wide"
+          style={{
+            fontFamily: 'Montserrat, sans-serif',
+            fontWeight: 700,
+            fontSize: 'clamp(1rem, 2.5vw, 1.5rem)',
+            color: '#F8A23B',
+            textShadow: '0 2px 4px rgba(0, 0, 0, 0.6)',
+            letterSpacing: '2px',
+            textTransform: 'uppercase'
+          }}
+        >
+          ATRAVESANDO FRONTERAS, ENTREGANDO RESULTADOS
+        </motion.p>
 
         <motion.p
           variants={effectiveFadeUp}

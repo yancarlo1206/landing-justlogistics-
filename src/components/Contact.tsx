@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { effectiveFadeUp, staggerContainer } from './ui/animations';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Send } from 'lucide-react';
+import locationIcon from '../assets/img/Icono ubicación turquesa.png';
+import phoneIcon from '../assets/img/Icono telefono turquesa.png';
+import mailIcon from '../assets/img/Icono correo turquesa.png';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
@@ -196,8 +199,8 @@ export function Contact() {
 
               <div className="space-y-4 sm:space-y-6">
                 <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className="bg-[#0056A6] p-2 sm:p-3 rounded-lg flex-shrink-0">
-                    <MapPin className="text-white" size={20} style={{ width: '20px', height: '20px', minWidth: '20px' }} />
+                  <div className="p-2 sm:p-2 rounded-lg flex-shrink-0">
+                    <img src={locationIcon} alt="Ubicación" className="w-5 h-5 object-contain" style={{ width: '25px', height: '25px', minWidth: '25px' }} />
                   </div>
                   <div>
                     <h4 className="text-[#001F54] mb-1 text-sm sm:text-base" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}>
@@ -212,8 +215,8 @@ export function Contact() {
                 </div>
 
                 <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className="bg-[#0056A6] p-2 sm:p-3 rounded-lg flex-shrink-0">
-                    <Phone className="text-white" size={20} style={{ width: '20px', height: '20px', minWidth: '20px' }} />
+                  <div className="p-2 sm:p-2 rounded-lg flex-shrink-0">
+                    <img src={phoneIcon} alt="Teléfono" className="w-5 h-5 object-contain" style={{ width: '25px', height: '25px', minWidth: '25px' }} />
                   </div>
                   <div>
                     <h4 className="text-[#001F54] mb-1 text-sm sm:text-base" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}>
@@ -224,8 +227,8 @@ export function Contact() {
                 </div>
 
                 <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className="bg-[#0056A6] p-2 sm:p-3 rounded-lg flex-shrink-0">
-                    <Mail className="text-white" size={20} style={{ width: '20px', height: '20px', minWidth: '20px' }} />
+                  <div className="p-2 sm:p-2 rounded-lg flex-shrink-0">
+                    <img src={mailIcon} alt="Correo" className="w-5 h-5 object-contain" style={{ width: '25px', height: '25px', minWidth: '25px' }} />
                   </div>
                   <div>
                     <h4 className="text-[#001F54] mb-1 text-sm sm:text-base" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 700 }}>

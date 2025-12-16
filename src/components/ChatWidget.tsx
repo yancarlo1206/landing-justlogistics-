@@ -5,7 +5,7 @@ import { MessageCircle, X, Phone } from "lucide-react";
 
 // Logo local reutilizado en el header del widget
 const logoHorizontal = new URL(
-  "../../assets/img/Logotipo Horizontal Blanco.png",
+  "../assets/img/Logotipo Horizontal Blanco.png",
   import.meta.url
 ).href;
 
@@ -23,24 +23,24 @@ export function ChatWidget() {
   return (
     <>
       <motion.button
-  animate={{
-    boxShadow: [
-      "0 0 0px rgba(0,86,166,0.6)",
-      "0 0 12px 2px rgba(0,86,166,0.6)",
-      "0 0 0px rgba(0,86,166,0.6)",
-    ],
-  }}
-  transition={{
-    repeat: Infinity,
-    duration: 2.5,
-    ease: "easeInOut",
-  }}
-  onClick={() => setIsOpen((o) => !o)}
-  className="fixed bottom-6 right-6 z-50 bg-[#0056A6] hover:bg-[#004080] text-white p-4 rounded-full shadow-lg"
-  aria-label={isOpen ? "Cerrar chat" : "Abrir chat"}
->
-  {isOpen ? <X size={26} /> : <MessageCircle size={26} />}
-</motion.button>
+        animate={{
+          boxShadow: [
+            "0 0 0px rgba(0,86,166,0.6)",
+            "0 0 12px 2px rgba(0,86,166,0.6)",
+            "0 0 0px rgba(0,86,166,0.6)",
+          ],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 2.5,
+          ease: "easeInOut",
+        }}
+        onClick={() => setIsOpen((o) => !o)}
+        className="fixed bottom-6 right-6 z-50 bg-[#0056A6] hover:bg-[#004080] text-white p-4 rounded-full shadow-lg"
+        aria-label={isOpen ? "Cerrar chat" : "Abrir chat"}
+      >
+        {isOpen ? <X size={26} /> : <MessageCircle size={26} />}
+      </motion.button>
 
 
       {/* Ventana de chat */}

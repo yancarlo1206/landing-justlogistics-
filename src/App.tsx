@@ -9,6 +9,8 @@ import { Services } from './components/Services';
 import { MapSection } from './components/MapSection';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
+import { Statistics } from './components/Statistics';
+import { AlliedBrands } from './components/AlliedBrands';
 
 // Widget de chat y notificaciones
 import { ChatWidget } from './components/ChatWidget';
@@ -17,7 +19,7 @@ import { Toaster } from './components/ui/sonner';
 export default function App() {
   // Sección activa del menú para resaltar el ítem correspondiente
   const [activeSection, setActiveSection] = useState<
-    'home' | 'about' | 'services' | 'map' | 'contact' | 'admin' | 'clients'
+    'home' | 'about' | 'statistics' | 'services' | 'map' | 'brands' | 'contact' | 'admin' | 'clients'
   >('home');
 
   // Flag para saber si se está en modo admin (por ahora sin uso visible en UI)
@@ -43,12 +45,12 @@ export default function App() {
 
     // Detecta en qué sección está el scroll y actualiza el estado
     const onScroll = () => {
-      const sections = ['home', 'about', 'services', 'map', 'contact'];
+      const sections = ['home', 'about', 'statistics', 'services', 'map', 'brands', 'contact'];
       const pos = window.scrollY + 100;
       for (const s of sections) {
         const el = document.getElementById(s);
         if (el && pos >= el.offsetTop && pos < el.offsetTop + el.offsetHeight) {
-          setActiveSection(s as 'home' | 'about' | 'services' | 'map' | 'contact');
+          setActiveSection(s as 'home' | 'about' | 'statistics' | 'services' | 'map' | 'brands' | 'contact');
           break;
         }
       }
@@ -72,6 +74,9 @@ export default function App() {
           {/* Sección de nosotros */}
           <div id="about"><AboutUs /></div>
 
+          {/* Cifras */}
+          <div id="statistics"><Statistics /></div>
+
           {/* Servicios listados */}
           <div id="services"><Services /></div>
 
@@ -80,6 +85,9 @@ export default function App() {
 
           {/* Formulario de contacto */}
           <div id="contact"><Contact /></div>
+
+          {/* Marcas Aliadas */}
+          <div id="brands"><AlliedBrands /></div>
 
           {/* Pie de página */}
           <Footer />
