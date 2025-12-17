@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { effectiveFadeUp, staggerContainer } from './ui/animations';
 import { Send } from 'lucide-react';
 import locationIcon from '../assets/img/Icono ubicación turquesa.png';
